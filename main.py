@@ -122,6 +122,15 @@ if st.button('爬取数据', key="fetch_data"):
     # 清洗数据
     df['均价数值'] = df['均价'].apply(extract_number)
 
+    if 'df' in locals() and not df.empty:
+    # 清洗 '均价' 列的函数
+    def extract_number(text):
+        match = re.search(r'(\d+)', text)
+        return int(match.group()) if match else None
+
+    # 清洗数据
+    df['均价数值'] = df['均价'].apply(extract_number)
+
     # 基本统计分析
     average_price = df['均价数值'].mean()
     median_price = df['均价数值'].median()
@@ -129,12 +138,15 @@ if st.button('爬取数据', key="fetch_data"):
     st.write(f'均价的中位数是：{median_price}元/㎡')
 
     # 可视化 - 均价分布情况
-    fig, ax = plt.subplots()
-    sns.histplot(df['均价数值'], kde=False, ax=ax)
-    ax.set_title('均价分布情况')
-    ax.set_xlabel('价格 (元/㎡)')
-    ax.set_ylabel('频数')
-
+    try:
+        fig, ax = plt.subplots()
+        sns.histplot(df['均价数值'].dropna(), kde=False, ax=ax)
+        ax.set_title('均价分布情况')
+        ax.set_xlabel('价格 (元/㎡)')
+        ax.set_ylabel('频数')
+        st.pyplot(fig)
+    except Exception as e:
+        st.error(f"绘图时发生错误：{e}")
     # 使用列来居中显示图表
     col1, col2, col3 = st.columns([1, 6, 1])  # 比例为 1:6:1
     with col2:  # 使用中间的列来显示图表
