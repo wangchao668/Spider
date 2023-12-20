@@ -32,7 +32,6 @@ commonmark==0.9.1
 comtypes==1.2.0
 cssselect==1.1.0
 cycler==0.11.0
-dataclasses==0.8
 dataset==1.6.0
 decorator==5.1.1
 defusedxml==0.7.1
