@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import re
 import io  # 用于处理内存中的文件
 plt.rcParams['font.sans-serif']=['SimHei']
+sns.set(font_scale=1.5,font='STSong')
 
 # 设置页面
 st.set_page_config(page_title="房地产数据爬虫", layout="wide")
@@ -142,10 +143,6 @@ if st.button('爬取数据', key="fetch_data"):
             st.pyplot(fig)
         except Exception as e:
             st.error(f"绘图时发生错误：{e}")
-    # 使用列来居中显示图表
-    col1, col2, col3 = st.columns([1, 6, 1])  # 比例为 1:6:1
-    with col2:  # 使用中间的列来显示图表
-        st.pyplot(fig)
 
 
 
