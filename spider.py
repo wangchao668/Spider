@@ -60,6 +60,7 @@ class Spiders(FakeUA):
         return maxpage
 
     @st.cache(allow_output_mutation=True)
+    @st.cache(suppress_st_warning=True)
     def get_citydata(self, pages_choice):
         maxpage_num = self.get_maxpagenum()
         if maxpage_num == 'error':
