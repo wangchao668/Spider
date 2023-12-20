@@ -185,7 +185,6 @@ statsmodels==0.12.2
 streamlit==1.10.0
 sympy==1.9
 tenacity==8.2.2
-tensorboard @ file:///C:/Users/CHAO%20WANG/Desktop/mask-detect/tensorboard-2.10.1-py3-none-any.whl
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
 tensorflow==1.15.0
@@ -196,8 +195,6 @@ testpath==0.6.0
 threadpoolctl==3.1.0
 toml==0.10.2
 toolz==0.12.0
-torch @ file:///C:/Users/CHAO%20WANG/Desktop/torch-1.10.2%2Bcu113-cp36-cp36m-win_amd64.whl
-torchvision @ file:///C:/Users/CHAO%20WANG/Desktop/torchvision-0.11.3%2Bcu113-cp36-cp36m-win_amd64.whl
 tornado==6.1
 tqdm==4.64.1
 traitlets==4.3.3
