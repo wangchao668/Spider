@@ -1,10 +1,10 @@
 import streamlit as st
-from spider import Spiders
+from result import Spiders
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import re
-
+import io  # 用于处理内存中的文件
 plt.rcParams['font.sans-serif']=['SimHei']
 
 # 设置页面
@@ -65,10 +65,6 @@ col1, col2 = st.columns(2)
 with col1:
     st.markdown('<p class="custom-font">请选择城市和爬取页数，然后点击下方按钮开始爬取数据。</p>', unsafe_allow_html=True)
 
-import io  # 用于处理内存中的文件
-
-# ... [您的其他代码] ...
-
 # 在Streamlit中显示DataFrame和下载按钮
 if st.button('爬取数据', key="fetch_data"):
     with st.spinner('正在爬取数据...'):
@@ -120,33 +116,32 @@ if st.button('爬取数据', key="fetch_data"):
         return int(match.group()) if match else None
 
     # 清洗数据
-    df['均价数值'] = df['均价'].apply(extract_number)
-
     if 'df' in locals() and not df.empty:
-    # 清洗 '均价' 列的函数
-    def extract_number(text):
-        match = re.search(r'(\d+)', text)
-        return int(match.group()) if match else None
+        # 清洗 '均价' 列的函数
+        def extract_number(text):
+            match = re.search(r'(\d+)', text)
+            return int(match.group()) if match else None
 
-    # 清洗数据
-    df['均价数值'] = df['均价'].apply(extract_number)
 
-    # 基本统计分析
-    average_price = df['均价数值'].mean()
-    median_price = df['均价数值'].median()
-    st.write(f'均价的平均值是：{average_price}元/㎡')
-    st.write(f'均价的中位数是：{median_price}元/㎡')
+        # 清洗数据
+        df['均价数值'] = df['均价'].apply(extract_number)
 
-    # 可视化 - 均价分布情况
-    try:
-        fig, ax = plt.subplots()
-        sns.histplot(df['均价数值'].dropna(), kde=False, ax=ax)
-        ax.set_title('均价分布情况')
-        ax.set_xlabel('价格 (元/㎡)')
-        ax.set_ylabel('频数')
-        st.pyplot(fig)
-    except Exception as e:
-        st.error(f"绘图时发生错误：{e}")
+        # 基本统计分析
+        average_price = df['均价数值'].mean()
+        median_price = df['均价数值'].median()
+        st.write(f'均价的平均值是：{average_price}元/㎡')
+        st.write(f'均价的中位数是：{median_price}元/㎡')
+
+        # 可视化 - 均价分布情况
+        try:
+            fig, ax = plt.subplots()
+            sns.histplot(df['均价数值'].dropna(), kde=False, ax=ax)
+            ax.set_title('均价分布情况')
+            ax.set_xlabel('价格 (元/㎡)')
+            ax.set_ylabel('频数')
+            st.pyplot(fig)
+        except Exception as e:
+            st.error(f"绘图时发生错误：{e}")
     # 使用列来居中显示图表
     col1, col2, col3 = st.columns([1, 6, 1])  # 比例为 1:6:1
     with col2:  # 使用中间的列来显示图表
