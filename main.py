@@ -3,6 +3,7 @@ from spider import Spiders
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontProperties
 import re
 import io  # 用于处理内存中的文件
 plt.rcParams['font.sans-serif']=['SimHei']
