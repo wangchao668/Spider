@@ -138,10 +138,10 @@ if st.button('爬取数据', key="fetch_data"):
         # 可视化 - 均价分布情况
         try:
             fig, ax = plt.subplots()
-            sns.histplot(df['均价数值'].dropna(), kde=False, ax=ax)
-            ax.set_title('均价分布情况')
-            ax.set_xlabel('价格 (元/㎡)')
-            ax.set_ylabel('频数')
+            sns.histplot(df['均价数值'].dropna(), kde=False, ax=ax,fontproperties=font_prop)
+            ax.set_title('均价分布情况',fontproperties=font_prop)
+            ax.set_xlabel('价格 (元/㎡)',fontproperties=font_prop)
+            ax.set_ylabel('频数',fontproperties=font_prop)
             st.pyplot(fig)
         except Exception as e:
             st.error(f"绘图时发生错误：{e}")
