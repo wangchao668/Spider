@@ -8,7 +8,8 @@ import re
 import io  # 用于处理内存中的文件
 plt.rcParams['font.sans-serif']=['SimHei']
 sns.set(font_scale=1.5,font='STSong')
-
+font_path = 'path/to/your/font/SimHei.ttf'
+font_prop = FontProperties(fname=font_path, size=14)
 # 设置页面
 st.set_page_config(page_title="房地产数据爬虫", layout="wide")
 
