@@ -1,5 +1,5 @@
 import streamlit as st
-from result import Spiders
+from spider import Spiders
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
