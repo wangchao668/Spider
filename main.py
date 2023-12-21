@@ -48,14 +48,14 @@ with st.sidebar:
     st.header('配置')
     spider.get_cityinfo()
     city = st.selectbox('选择城市', list(spider.city_dict.keys()))
-    max_pages = 200  # 默认的最大页数
+    max_pages = 2000  # 默认的最大页数
     if city:
         spider.city_url = spider.city_dict[city]
         spider.city_name = city
         max_pages = spider.get_maxpagenum()  # 获取并显示选定城市的最大页数
         if max_pages == 'error':
             st.error('无法获取该城市的最大页数。')
-            max_pages = 200
+            max_pages = 2000
         else:
             st.write(f'该城市共有 {max_pages} 页数据可供爬取。')
 
