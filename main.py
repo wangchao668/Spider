@@ -38,7 +38,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # 界面标题
-st.markdown('<p class="big-font">房地产数据爬虫</p>', unsafe_allow_html=True)
+st.markdown('<p class="big-font">基于链家网的房地产数据爬取与深度分析</p>', unsafe_allow_html=True)
 
 # 创建一个爬虫实例
 spider = Spiders(url="https://gz.fang.lianjia.com/")
